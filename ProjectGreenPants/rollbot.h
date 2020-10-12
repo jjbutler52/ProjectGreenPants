@@ -20,7 +20,7 @@
 	int flipDigits(int toBeFlipped);
 	bool isCrit(int roll);
 	bool isImpaled(int roll);
-	string targetLocation(int location)
+	std::string targetLocation(int location);
 
 	//constructors
 	

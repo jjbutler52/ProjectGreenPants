@@ -3,8 +3,8 @@
 #include "rollbot.h"
 #include <iostream>
 #include <cmath>
-#include<time.h>
-#include<string>
+#include <time.h>
+#include <string>
 using namespace std;
 
 int attackRoll(int skill)
@@ -12,17 +12,20 @@ int attackRoll(int skill)
 	
 	int roll = 0;
 	int sl = 0;
+	int location = 0;
 
 	roll = rand() % 100 + 1;
 
 	isCrit(roll);
 	isImpaled(roll);
-	
+	location = flipDigits(roll);
+
 
 	
 	
-	cout << roll << endl; // test line
-	cout << "flipped roll: " << flipDigits(roll);
+	cout <<"original roll is: " <<  roll << endl; // test line
+	cout << "flipped roll: " << flipDigits(roll) << endl ;
+	cout << "Target location is: " << targetLocation(location) << endl;
 
 	return roll;
 }
@@ -66,8 +69,9 @@ bool isImpaled(int roll)
 
 }
 
-string targetLocation(int location)
+std::string targetLocation(int location)
 {
+	
 	if (location < 10)
 	{
 		return "Head";
