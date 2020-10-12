@@ -19,6 +19,7 @@ int attackRoll(int skill)
 	isCrit(roll);
 	isImpaled(roll);
 	location = flipDigits(roll);
+	sl = successLevel(skill, roll);
 
 
 	
@@ -27,6 +28,18 @@ int attackRoll(int skill)
 	cout << "flipped roll: " << flipDigits(roll) << endl ;
 	cout << "Target location is: " << targetLocation(location) << endl;
 	cout << "Beast location is: " << beastLocation(location) << endl;
+
+	cout << "Success Level is : ";
+	if (sl > 0)
+	{
+		cout << "+" << sl;
+	}
+	else
+	{
+		cout << "-" << sl;
+	}
+
+
 
 	return roll;
 }
@@ -146,4 +159,15 @@ std::string beastLocation(int location)
 	{
 		return "ERROR";
 	}
+}
+
+int successLevel(int skill, int roll) 
+{
+	int success = 0;
+	roll = roll / 10;
+	skill = skill / 10;
+
+	success = skill - roll;
+
+	return success;
 }

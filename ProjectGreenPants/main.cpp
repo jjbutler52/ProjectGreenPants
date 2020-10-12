@@ -7,12 +7,10 @@
 using namespace std;
 
 int main() {
-	int test = 35;
-	srand(time(0));
+	srand(static_cast<unsigned>(time(0)));
 
 	attackRoll(60);
 	cout << endl << endl;
 
-	cout << flipDigits(test);
-
+	
 }
