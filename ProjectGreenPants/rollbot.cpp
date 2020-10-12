@@ -26,6 +26,7 @@ int attackRoll(int skill)
 	cout <<"original roll is: " <<  roll << endl; // test line
 	cout << "flipped roll: " << flipDigits(roll) << endl ;
 	cout << "Target location is: " << targetLocation(location) << endl;
+	cout << "Beast location is: " << beastLocation(location) << endl;
 
 	return roll;
 }
@@ -100,5 +101,49 @@ std::string targetLocation(int location)
 	else if (location <= 100)
 	{
 		return "Right Leg";
+	}
+
+	else
+	{
+		return "ERROR";
+	}
+}
+
+std::string beastLocation(int location)
+{
+
+	if (location < 17)
+	{
+		return "Head";
+	}
+
+	else if (location < 57)
+	{
+		return "Body";
+	}
+
+	else if (location < 68)
+	{
+		return "Front Left Leg";
+	}
+
+	else if (location < 79)
+	{
+		return "Front Right Leg";
+	}
+
+	else if (location < 90)
+	{
+		return "Back Left Leg";
+	}
+
+	else if (location <= 100)
+	{
+		return "Back Right Leg";
+	}
+
+	else
+	{
+		return "ERROR";
 	}
 }

@@ -21,6 +21,7 @@
 	bool isCrit(int roll);
 	bool isImpaled(int roll);
 	std::string targetLocation(int location);
+	std::string beastLocation(int location);
 
 	//constructors
 	
