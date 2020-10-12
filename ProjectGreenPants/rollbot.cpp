@@ -30,14 +30,18 @@ int attackRoll(int skill)
 	cout << "Beast location is: " << beastLocation(location) << endl;
 
 	cout << "Success Level is : ";
+	
+	
+	
 	if (sl > 0)
 	{
 		cout << "+" << sl;
 	}
 	else
 	{
-		cout << "-" << sl;
+		cout << sl;
 	}
+
 
 
 
