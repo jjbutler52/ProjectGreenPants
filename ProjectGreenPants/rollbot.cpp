@@ -29,9 +29,39 @@ int attackRoll(int skill)
 	cout << "Target location is: " << targetLocation(location) << endl;
 	cout << "Beast location is: " << beastLocation(location) << endl;
 
-	cout << "Success Level is : ";
+	cout << "Success Level is: ";
 	
+	if ((sl > 0) && isCrit(roll))
+	{
+		cout << "SL is: +" << sl;
+	}
+
+	else if ((sl < 0) && isCrit(roll))
+	{
+		cout << "(Fumble!) SL is: " << sl;
+	}
 	
+	else if ((sl > 0) && !isCrit(roll))
+	{
+		cout << "SL is: +" << sl;
+	}
+	
+	else if ((sl < 0) && !isCrit(roll))
+	{
+		cout << "SL is: " << sl;
+	}
+
+	else if ((sl > 0) && isImpaled(roll))
+	{
+		cout << "SL is: +" << sl;
+	}
+
+	else if ((sl < 0) && isImpaled(roll))
+	{
+		cout << "SL is: " << sl;
+	}
+
+	/*
 	
 	if (sl > 0)
 	{
@@ -41,7 +71,7 @@ int attackRoll(int skill)
 	{
 		cout << sl;
 	}
-
+	*/
 
 
 
