@@ -15,11 +15,11 @@ int attackRoll(int skill)
 	int location = 0;
 
 	roll = rand() % 100 + 1;
-
-	isCrit(roll);
+	sl = successLevel(skill, roll);
+	isCrit(roll, sl);
 	isImpaled(roll);
 	location = flipDigits(roll);
-	sl = successLevel(skill, roll);
+	
 
 
 	
@@ -31,22 +31,22 @@ int attackRoll(int skill)
 
 	cout << "Success Level is: ";
 	
-	if ((sl > 0) && isCrit(roll))
+	if ((sl > 0) && isCrit(roll, sl))
 	{
 		cout << "SL is: +" << sl;
 	}
 
-	else if ((sl < 0) && isCrit(roll))
+	else if ((sl < 0) && isCrit(roll, sl))
 	{
-		cout << "(Fumble!) SL is: " << sl;
+		cout << "(FUMBLE!) SL is: " << sl;
 	}
 	
-	else if ((sl > 0) && !isCrit(roll))
+	else if ((sl > 0) && !isCrit(roll, sl))
 	{
 		cout << "SL is: +" << sl;
 	}
 	
-	else if ((sl < 0) && !isCrit(roll))
+	else if ((sl < 0) && !isCrit(roll, sl))
 	{
 		cout << "SL is: " << sl;
 	}
@@ -96,14 +96,12 @@ int flipDigits(int flippee)
 	return flippedDigit;
 }
 
-bool isCrit(int roll)
+bool isCrit(int roll, int SL)
 {
-	if (roll % 11 == 0)
+	if (roll % 11 == 0 && SL > 0)
 	{
-		cout << "(CRIT) ";
 		return true;
 	}
-
 	else
 		return false;
 }
@@ -120,6 +118,7 @@ bool isImpaled(int roll)
 		return false;
 
 }
+
 
 std::string targetLocation(int location)
 {

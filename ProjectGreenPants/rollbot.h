@@ -19,7 +19,7 @@
 	int defendRoll(int defend);
 	int flipDigits(int toBeFlipped);
 	int successLevel(int skill, int roll);
-	bool isCrit(int roll);
+	bool isCrit(int roll, int SL);
 	bool isImpaled(int roll);
 	std::string targetLocation(int location);
 	std::string beastLocation(int location);
