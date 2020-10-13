@@ -13,27 +13,37 @@ int attackRoll(int skill)
 	int roll = 0;
 	int sl = 0;
 	int location = 0;
+	
 
 	roll = rand() % 100 + 1;
 	sl = successLevel(skill, roll);
-	isCrit(roll, sl);
-	isImpaled(roll);
 	location = flipDigits(roll);
-	
+
+	isCrit(roll, sl);
+	isImpaled(roll, sl);
+	isFumble(roll, sl);
+
+	bool wasCrit = isCrit(roll, sl);
+	bool wasImpaled = isImpaled(roll, sl);
+	bool wasFumble = isFumble(roll, sl);
+
+	printAttack(wasFumble, wasCrit, wasImpaled, sl, roll, location);
 
 
 	
-	
+	/*
 	cout <<"original roll is: " <<  roll << endl; // test line
 	cout << "flipped roll: " << flipDigits(roll) << endl ;
 	cout << "Target location is: " << targetLocation(location) << endl;
 	cout << "Beast location is: " << beastLocation(location) << endl;
 
 	cout << "Success Level is: ";
+
+		
 	
-	if ((sl > 0) && isCrit(roll, sl))
+	if (isCrit(roll, sl))
 	{
-		cout << "SL is: +" << sl;
+		cout << "(CRIT) SL is: +" << sl;
 	}
 
 	else if ((sl < 0) && isCrit(roll, sl))
@@ -51,12 +61,12 @@ int attackRoll(int skill)
 		cout << "SL is: " << sl;
 	}
 
-	else if ((sl > 0) && isImpaled(roll))
+	else if ((sl > 0) && isImpaled(roll, sl))
 	{
 		cout << "SL is: +" << sl;
 	}
 
-	else if ((sl < 0) && isImpaled(roll))
+	else if ((sl < 0) && isImpaled(roll, sl))
 	{
 		cout << "SL is: " << sl;
 	}
@@ -65,18 +75,8 @@ int attackRoll(int skill)
 	{
 		cout << "ERROR";
 	}
-	/*
 	
-	if (sl > 0)
-	{
-		cout << "+" << sl;
-	}
-	else
-	{
-		cout << sl;
-	}
 	*/
-
 
 
 	return roll;
@@ -98,7 +98,7 @@ int flipDigits(int flippee)
 
 bool isCrit(int roll, int SL)
 {
-	if (roll % 11 == 0 && SL > 0)
+	if (roll % 11 == 0 && SL >= 0)
 	{
 		return true;
 	}
@@ -106,11 +106,10 @@ bool isCrit(int roll, int SL)
 		return false;
 }
 
-bool isImpaled(int roll)
+bool isImpaled(int roll, int SL)
 {
-	if (roll % 10 == 0)
+	if (roll % 10 == 0 && SL >= 0)
 	{
-		cout << "(IMPALE) ";
 		return true;
 	}
 
@@ -119,6 +118,15 @@ bool isImpaled(int roll)
 
 }
 
+bool isFumble(int roll, int SL)
+{
+	if (roll % 11 == 0 && SL < 0)
+	{
+		return true;
+	}
+	else
+		return false;
+}
 
 std::string targetLocation(int location)
 {
@@ -208,3 +216,40 @@ int successLevel(int skill, int roll)
 
 	return success;
 }
+
+void printAttack(bool wasFumble, bool wasCrit, bool wasImpaled, int SL, int roll, int location)
+{
+	std::string target;
+	std::string beast;
+
+	if (SL > 0)
+	{
+		cout << "SL: +" << SL << " ";
+	}
+	else
+	{
+		cout << "SL: " << SL << " ";
+	}
+
+	cout << "Roll: " << roll << " ";
+
+	if (wasCrit)
+	{
+		cout << "(CRIT!) ";
+	}
+
+	if (wasImpaled)
+	{
+		cout << "(IMPALE!) ";
+	}
+
+	if (wasFumble)
+	{
+		cout << "(FUMBLE!) ";
+	}
+
+	 target = targetLocation(location);
+	 beast = beastLocation(location);
+	 cout << "Hit: " << target << "/" << beast;
+}
+
