@@ -61,6 +61,10 @@ int attackRoll(int skill)
 		cout << "SL is: " << sl;
 	}
 
+	else
+	{
+		cout << "ERROR";
+	}
 	/*
 	
 	if (sl > 0)
