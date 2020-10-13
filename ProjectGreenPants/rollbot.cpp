@@ -247,9 +247,11 @@ void printAttack(bool wasFumble, bool wasCrit, bool wasImpaled, int SL, int roll
 	{
 		cout << "(FUMBLE!) ";
 	}
-
-	 target = targetLocation(location);
-	 beast = beastLocation(location);
-	 cout << "Hit: " << target << "/" << beast;
+	else if (!wasFumble)
+	{
+		target = targetLocation(location);
+		beast = beastLocation(location);
+		cout << "Hit: " << target << "/" << beast;
+	}
 }
 
