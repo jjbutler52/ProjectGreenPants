@@ -224,14 +224,14 @@ void printAttack(bool wasFumble, bool wasCrit, bool wasImpaled, int SL, int roll
 
 	if (SL > 0)
 	{
-		cout << "SL: +" << SL << " ";
+		cout << "[SL]: +" << SL << " ";
 	}
 	else
 	{
-		cout << "SL: " << SL << " ";
+		cout << "[SL]: " << SL << " ";
 	}
 
-	cout << "Roll: " << roll << " ";
+	cout << "[Roll]: " << roll << " ";
 
 	if (wasCrit)
 	{
@@ -251,7 +251,7 @@ void printAttack(bool wasFumble, bool wasCrit, bool wasImpaled, int SL, int roll
 	{
 		target = targetLocation(location);
 		beast = beastLocation(location);
-		cout << "Hit: " << target << "/" << beast;
+		cout << "[Hit(humanoid/beast)]: " << target << "/" << beast;
 	}
 }
 
