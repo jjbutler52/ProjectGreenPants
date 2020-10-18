@@ -5,6 +5,7 @@
 #include <cmath>
 #include <time.h>
 #include <string>
+#include <sstream>
 using namespace std;
 
 int attackRoll(int skill)
@@ -27,8 +28,8 @@ int attackRoll(int skill)
 	bool wasImpaled = isImpaled(roll, sl);
 	bool wasFumble = isFumble(roll, sl);
 
-	printAttack(wasFumble, wasCrit, wasImpaled, sl, roll, location);
-
+	std::string response = printAttack(wasFumble, wasCrit, wasImpaled, sl, roll, location);
+	cout << response << endl;
 
 	
 	/*
@@ -145,12 +146,12 @@ std::string targetLocation(int location)
 
 	else if (location < 25)
 	{
-		return "Left/Secondary Arm";
+		return "Off Arm";
 	}
 
 	else if (location < 45)
 	{
-		return "Right/Primary Arm";
+		return "Main Arm";
 	}
 
 	else if (location < 80)
@@ -160,12 +161,12 @@ std::string targetLocation(int location)
 
 	else if (location < 90)
 	{
-		return "Left Leg";
+		return "L-Leg";
 	}
 
 	else if (location <= 100)
 	{
-		return "Right Leg";
+		return "R-Leg";
 	}
 
 	else
@@ -189,22 +190,22 @@ std::string beastLocation(int location)
 
 	else if (location < 68)
 	{
-		return "Front Left Leg";
+		return "FL-Leg";
 	}
 
 	else if (location < 79)
 	{
-		return "Front Right Leg";
+		return "FR-Leg";
 	}
 
 	else if (location < 90)
 	{
-		return "Back Left Leg";
+		return "BL-Leg";
 	}
 
 	else if (location <= 100)
 	{
-		return "Back Right Leg";
+		return "BR-Leg";
 	}
 
 	else
@@ -224,41 +225,45 @@ int successLevel(int skill, int roll)
 	return success;
 }
 
-void printAttack(bool wasFumble, bool wasCrit, bool wasImpaled, int SL, int roll, int location)
+std::string printAttack(bool wasFumble, bool wasCrit, bool wasImpaled, int SL, int roll, int location)
 {
 	std::string target;
 	std::string beast;
+	std::stringstream str;
+
+	str << "[ATT] @John ";
 
 	if (SL > 0)
 	{
-		cout << "[SL]: +" << SL << " ";
+		str << "[SL:+ " << SL << "] " ;
 	}
 	else
 	{
-		cout << "[SL]: " << SL << " ";
+		str << "[SL:" << SL << "] ";
 	}
 
-	cout << "[Roll]: " << roll << " ";
+	str << "[Roll:" << roll << "] ";
 
 	if (wasCrit)
 	{
-		cout << "(CRIT!) ";
+		str << "(CRIT!) ";
 	}
 
 	if (wasImpaled)
 	{
-		cout << "(IMPALE!) ";
+		str << "(IMPALE!) ";
 	}
 
 	if (wasFumble)
 	{
-		cout << "(FUMBLE!) ";
+		str << "(FUMBLE!) ";
 	}
 	else if (!wasFumble)
 	{
 		target = targetLocation(location);
 		beast = beastLocation(location);
-		cout << "[Hit(humanoid/beast)]: " << target << "/" << beast;
+		str << "[Bi:" << target << "|Quad:"  << beast<< "]";
 	}
+	return str.str();
 }
 

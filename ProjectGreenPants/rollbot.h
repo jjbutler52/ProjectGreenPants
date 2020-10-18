@@ -20,7 +20,7 @@
 	std::string targetLocation(int location);
 	std::string beastLocation(int location);
 	
-	void printAttack(bool wasFumble, bool wasCrit, bool wasImpaled, int SL, int Roll, int location);
+	std::string printAttack(bool wasFumble, bool wasCrit, bool wasImpaled, int SL, int Roll, int location);
 	
 	
 
