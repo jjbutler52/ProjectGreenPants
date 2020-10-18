@@ -9,7 +9,6 @@
 #include<string>
 
 	int attackRoll(int skill);
-	int defendRoll(int skill);
 	int flipDigits(int toBeFlipped);
 	int successLevel(int skill, int roll);
 	
@@ -17,10 +16,11 @@
 	bool isImpaled(int roll, int SL);
 	bool isFumble(int roll, int SL);
 	
+	
 	std::string targetLocation(int location);
 	std::string beastLocation(int location);
 	
-	std::string printAttack(bool wasFumble, bool wasCrit, bool wasImpaled, int SL, int Roll, int location);
+	std::string printAttack(bool wasAttack, bool wasFumble, bool wasCrit, bool wasImpaled, int SL, int Roll, int location);
 	
 	
 

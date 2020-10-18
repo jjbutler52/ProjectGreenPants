@@ -27,67 +27,13 @@ int attackRoll(int skill)
 	bool wasCrit = isCrit(roll, sl);
 	bool wasImpaled = isImpaled(roll, sl);
 	bool wasFumble = isFumble(roll, sl);
+	bool wasAttack = false; // set in a fixed position for testing
 
-	std::string response = printAttack(wasFumble, wasCrit, wasImpaled, sl, roll, location);
+	std::string response = printAttack(wasAttack, wasFumble, wasCrit, wasImpaled, sl, roll, location);
 	cout << response << endl;
-
-	
-	/*
-	cout <<"original roll is: " <<  roll << endl; // test line
-	cout << "flipped roll: " << flipDigits(roll) << endl ;
-	cout << "Target location is: " << targetLocation(location) << endl;
-	cout << "Beast location is: " << beastLocation(location) << endl;
-
-	cout << "Success Level is: ";
-
-		
-	
-	if (isCrit(roll, sl))
-	{
-		cout << "(CRIT) SL is: +" << sl;
-	}
-
-	else if ((sl < 0) && isCrit(roll, sl))
-	{
-		cout << "(FUMBLE!) SL is: " << sl;
-	}
-	
-	else if ((sl > 0) && !isCrit(roll, sl))
-	{
-		cout << "SL is: +" << sl;
-	}
-	
-	else if ((sl < 0) && !isCrit(roll, sl))
-	{
-		cout << "SL is: " << sl;
-	}
-
-	else if ((sl > 0) && isImpaled(roll, sl))
-	{
-		cout << "SL is: +" << sl;
-	}
-
-	else if ((sl < 0) && isImpaled(roll, sl))
-	{
-		cout << "SL is: " << sl;
-	}
-
-	else
-	{
-		cout << "ERROR";
-	}
-	
-	*/
-
 
 	return roll;
 }
-
-int defendRoll(int skill)
-{
-	return skill;// temp return value to bypass error
-}
-
 
 
 int flipDigits(int flippee)
@@ -225,17 +171,24 @@ int successLevel(int skill, int roll)
 	return success;
 }
 
-std::string printAttack(bool wasFumble, bool wasCrit, bool wasImpaled, int SL, int roll, int location)
+std::string printAttack(bool wasAttack, bool wasFumble, bool wasCrit, bool wasImpaled, int SL, int roll, int location)
 {
 	std::string target;
 	std::string beast;
 	std::stringstream str;
 
-	str << "[ATT @John] ";
+	if (wasAttack)
+	{
+		str << "[ATT @John] ";
+	}
+	else
+	{
+		str << "[DEF @John] ";
+	}
 
 	if (SL > 0)
 	{
-		str << "[SL:+ " << SL << "] " ;
+		str << "[SL:+" << SL << "] " ;
 	}
 	else
 	{
@@ -244,17 +197,17 @@ std::string printAttack(bool wasFumble, bool wasCrit, bool wasImpaled, int SL, i
 
 	if (wasCrit)
 	{
-		str << "(CRIT!) ";
+		str << "{CRIT!} ";
 	}
 
 	if (wasImpaled)
 	{
-		str << "(IMPALE!) ";
+		str << "{IMPALE!} ";
 	}
 
 	if (wasFumble)
 	{
-		str << "(FUMBLE!) ";
+		str << "{FUMBLE!} ";
 	}
 	else if (!wasFumble)
 	{
