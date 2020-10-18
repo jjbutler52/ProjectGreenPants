@@ -231,7 +231,7 @@ std::string printAttack(bool wasFumble, bool wasCrit, bool wasImpaled, int SL, i
 	std::string beast;
 	std::stringstream str;
 
-	str << "[ATT] @John ";
+	str << "[ATT @John] ";
 
 	if (SL > 0)
 	{
@@ -241,8 +241,6 @@ std::string printAttack(bool wasFumble, bool wasCrit, bool wasImpaled, int SL, i
 	{
 		str << "[SL:" << SL << "] ";
 	}
-
-	str << "[Roll:" << roll << "] ";
 
 	if (wasCrit)
 	{
@@ -264,6 +262,7 @@ std::string printAttack(bool wasFumble, bool wasCrit, bool wasImpaled, int SL, i
 		beast = beastLocation(location);
 		str << "[Bi:" << target << "|Quad:"  << beast<< "]";
 	}
+	str << " [Roll:" << roll << "] ";
 	return str.str();
 }
 
