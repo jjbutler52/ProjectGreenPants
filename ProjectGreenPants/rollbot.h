@@ -9,7 +9,7 @@
 #include<string>
 
 	int attackRoll(int skill);
-	int defendRoll(int defend);
+	int defendRoll(int skill);
 	int flipDigits(int toBeFlipped);
 	int successLevel(int skill, int roll);
 	

@@ -82,6 +82,13 @@ int attackRoll(int skill)
 	return roll;
 }
 
+int defendRoll(int skill)
+{
+	return skill;// temp return value to bypass error
+}
+
+
+
 int flipDigits(int flippee)
 {
 	int ones = 0;
