@@ -30,11 +30,11 @@ logger = logging.getLogger(__name__)
 # context. Error handlers also receive the raised TelegramError object in error.
 def start(update, context):
     """Send a message when the command /start is issued."""
-    update.message.reply_text('Hi!')
+    update.message.reply_text('gpr bot started')
 
 def help(update, context):
     """Send a message when the command /help is issued."""
-    update.message.reply_text('Help!')
+    update.message.reply_text("-commands-\r\n\r\nattack:\r\n/a <skill #>\r\n\t[weapon skill + modifiers like advantage. ex: /a 60]\r\n\r\ndefend:\r\n/d <skill #>\r\n\t[weapon skill + modifiers like advantage. ex: /d 50]\r\n\r\nroll dice:   (1d100)\r\n/r\r\n\t[roll 1d100. ex: /r]")
 
 def attack_handler(update, context):
     username = update.message.from_user.first_name
@@ -49,7 +49,7 @@ def defend_handler(update, context):
 def roll_handler(update, context):
     username = update.message.from_user.first_name
     result = int(random.uniform (1, 100))
-    response = f"[Roll d100 @{username}]: {result}"   
+    response = f"[Roll @{username}]: {result}"   
     context.bot.send_message(chat_id=update.effective_chat.id, text=response)
 
 def echo(update, context):
