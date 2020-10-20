@@ -15,6 +15,7 @@ bot.
 
 import logging
 import os
+import random
 
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
 
@@ -31,18 +32,25 @@ def start(update, context):
     """Send a message when the command /start is issued."""
     update.message.reply_text('Hi!')
 
-
 def help(update, context):
     """Send a message when the command /help is issued."""
     update.message.reply_text('Help!')
 
 def attack_handler(update, context):
     username = update.message.from_user.first_name
-    response = f"[A] @{username} [SL]:+5  [Roll]:18  [Bi/Quad]: L-Leg/BL-Leg"   
- #   context.bot.send_message(chat_id=updated.message.chat_id, text=response, parse_mode=ParseMode.HTML)
- #   update.message.reply_text(response)
+    response = f"[ATT] @{username} [SL]:+5  [Roll]:18  [Bi/Quad]: L-Leg/BL-Leg"   
     context.bot.send_message(chat_id=update.effective_chat.id, text=response)
 
+def defend_handler(update, context):
+    username = update.message.from_user.first_name
+    response = f"[DEF] @{username} [SL]:+5  [Roll]:18  [Bi/Quad]: L-Leg/BL-Leg"   
+    context.bot.send_message(chat_id=update.effective_chat.id, text=response)
+
+def roll_handler(update, context):
+    username = update.message.from_user.first_name
+    result = int(random.uniform (1, 100))
+    response = f"[Roll d100 @{username}]: {result}"   
+    context.bot.send_message(chat_id=update.effective_chat.id, text=response)
 
 def echo(update, context):
     """Echo the user message."""
@@ -67,9 +75,10 @@ def main():
     # on different commands - answer in Telegram
     dp.add_handler(CommandHandler("start", start))
     dp.add_handler(CommandHandler("help", help))
-    dp.add_handler(CommandHandler("a", attack_handler))
-    dp.add_handler(CommandHandler("attack", attack_handler))
-
+    dp.add_handler(CommandHandler(["a","attack"], attack_handler))
+    dp.add_handler(CommandHandler(["d","defend"], defend_handler))
+    dp.add_handler(CommandHandler(["r","roll"], roll_handler))
+ 
     # on noncommand i.e message - echo the message on Telegram
     #  dp.add_handler(MessageHandler(Filters.text, echo))
 
