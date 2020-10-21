@@ -2,7 +2,7 @@ from combat import flipDigits, isCrit, isImpaled, isFumble, successLevel, target
 import random
 
 
-result = successLevel(47, 62)
+result = attack(47, "John")
 
 print(result)
 

@@ -26,7 +26,7 @@ def start(update, context):
 
 def help(update, context):
     """Send a message when the command /help is issued."""
-    update.message.reply_text("-commands-\r\n\r\nattack:\r\n/a <skill #>\r\n\t[weapon skill + modifiers like advantage. ex: /a 60]\r\n\r\ndefend:\r\n/d <skill #>\r\n\t[weapon skill + modifiers like advantage. ex: /d 50]\r\n\r\nroll dice:   (1d100)\r\n/r\r\n\t[roll 1d100. ex: /r]")
+    update.message.reply_text("-Commands-\r\n\r\nAttack:\r\n/a <Skill #>\r\n\t[weapon skill + modifiers like advantage. ex: /a 60]\r\n\r\nDefend:\r\n/d <Skill #>\r\n\t[weapon skill + modifiers like advantage. ex: /d 50]\r\n\r\nRoll Dice:   (1d100)\r\n/r\r\n\t[roll 1d100. ex: /r]\r\n\r\n-Note-\r\n\tBi = Biped(Human/Humanoid)\r\n\tQuad = Quadruped(Beast)")
 
 def attack_handler(update, context):
     username = update.message.from_user.first_name

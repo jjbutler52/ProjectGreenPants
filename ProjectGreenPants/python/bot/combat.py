@@ -121,9 +121,9 @@ def createResponse(wasAttack, wasFumble, wasCrit, wasImpaled, SL, roll, location
    
 
     if wasAttack:
-        result = f"[ATT @{username}]" 
+        result = f"[ATT @{username}] " 
     else:
-        result = f"[DEF @{username}]"
+        result = f"[DEF @{username}] "
     
     if SL > 0:
         result += "[SL:+" + str(int(SL)) + "] "
