@@ -1,14 +1,14 @@
 import random
 
 def attack (skill, username):
-    result = f"[ATT] @{username} [SL]:+5  [Roll]:18 [Bi/Quad]: L-Leg/BL-Leg"
-    return result
+  #  result = f"[ATT] @{username} [SL]:+5  [Roll]:18 [Bi/Quad]: L-Leg/BL-Leg"
+    return combatRoll(skill, username, True)
 
 def defend (skill, username):
     result = f"[DEF] @{username} [SL]:+5  [Roll]:18 [Bi/Quad]: L-Leg/BL-Leg"
     return result
 
-def combatRoll(skill, wasAttack):
+def combatRoll(skill,username, wasAttack):
     roll = 0
     sl = 0
     location = 0
@@ -25,7 +25,7 @@ def combatRoll(skill, wasAttack):
     wasImpaled = isImpaled(roll, sl)
     wasFumble = isFumble(roll, sl)
 
-    response = printAttack(wasAttack, wasFumble, wasCrit, wasImpaled, sl, roll, location)
+    response = createResponse(wasAttack, wasFumble, wasCrit, wasImpaled, sl, roll, location, username)
     print(response)
     return roll 
 
@@ -111,16 +111,17 @@ def beastLocation(location):
 
     else:
         return "ERROR"
-        
 
 
-def printAttack(wasAttack, wasFumble, wasCrit, wasImpaled, SL, roll, location):
-    target
-    beast
-    result
+
+def createResponse(wasAttack, wasFumble, wasCrit, wasImpaled, SL, roll, location, username):
+    #target
+    #beast
+   # result
+   
 
     if wasAttack:
-        result += f"[ATT @{username}]" 
+        result = f"[ATT @{username}]" 
     else:
         result += f"[DEF @{username}]"
     
