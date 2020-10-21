@@ -9,9 +9,9 @@ def defend (skill, username):
     return result
 
 def combatRoll(skill,username, wasAttack):
-    roll = 0
-    sl = 0
-    location = 0
+    #roll = 0
+    #sl = 0
+    #location = 0
 
     roll = random.randint(0 ,100)
     sl = successLevel(skill, roll)
@@ -123,12 +123,12 @@ def createResponse(wasAttack, wasFumble, wasCrit, wasImpaled, SL, roll, location
     if wasAttack:
         result = f"[ATT @{username}]" 
     else:
-        result += f"[DEF @{username}]"
+        result = f"[DEF @{username}]"
     
     if SL > 0:
-        result += "[SL:+" + SL + "] "
+        result += "[SL:+" + str(int(SL)) + "] "
     else:
-        result += "[SL:" + SL + "] "
+        result += "[SL:" + str(int(SL)) + "] "
 
     if wasCrit:
         result += "{CRIT!} "
