@@ -9,7 +9,7 @@ using namespace std;
 int main() {
 	srand(static_cast<unsigned>(time(0)));
 
-	attackRoll(60);
+	combatRoll(60, true);
 	cout << endl << endl;
 
 	

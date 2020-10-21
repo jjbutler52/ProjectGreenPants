@@ -8,7 +8,7 @@
 #include<cmath>
 #include<string>
 
-	int attackRoll(int skill);
+	int combatRoll(int skill, bool wasAttack);
 	int flipDigits(int toBeFlipped);
 	int successLevel(int skill, int roll);
 	

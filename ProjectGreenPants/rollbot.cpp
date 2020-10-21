@@ -8,7 +8,7 @@
 #include <sstream>
 using namespace std;
 
-int attackRoll(int skill)
+int combatRoll(int skill, bool wasAttack)
 {
 	
 	int roll = 0;
@@ -27,7 +27,7 @@ int attackRoll(int skill)
 	bool wasCrit = isCrit(roll, sl);
 	bool wasImpaled = isImpaled(roll, sl);
 	bool wasFumble = isFumble(roll, sl);
-	bool wasAttack = false; // set in a fixed position for testing
+	//bool wasAttack = false; // set in a fixed position for testing
 
 	std::string response = printAttack(wasAttack, wasFumble, wasCrit, wasImpaled, sl, roll, location);
 	cout << response << endl;
