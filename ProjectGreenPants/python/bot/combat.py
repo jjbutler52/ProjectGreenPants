@@ -5,8 +5,8 @@ def attack (skill, username):
     return combatRoll(skill, username, True)
 
 def defend (skill, username):
-    result = f"[DEF] @{username} [SL]:+5  [Roll]:18 [Bi/Quad]: L-Leg/BL-Leg"
-    return result
+   # result = f"[DEF] @{username} [SL]:+5  [Roll]:18 [Bi/Quad]: L-Leg/BL-Leg"
+    return combatRoll(skill, username, False)
 
 def combatRoll(skill,username, wasAttack):
     #roll = 0
@@ -26,8 +26,8 @@ def combatRoll(skill,username, wasAttack):
     wasFumble = isFumble(roll, sl)
 
     response = createResponse(wasAttack, wasFumble, wasCrit, wasImpaled, sl, roll, location, username)
-    print(response)
-    return roll 
+    #print(response)
+    return response 
 
 
 def flipDigits(flippee):
