@@ -143,7 +143,7 @@ def createResponse(wasAttack, wasFumble, wasCrit, wasImpaled, SL, roll, location
         beast = beastLocation(location)
         result += "[Bi:" + target + "|Quad:" + beast + "]"
     
-    result += " [Roll:" + roll +"] "
+    result += " [Roll:" + str(roll) +"] "
     return result
 
 
