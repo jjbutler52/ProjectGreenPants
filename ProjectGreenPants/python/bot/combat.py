@@ -1,3 +1,5 @@
+import random
+
 def attack (skill, username):
     result = f"[ATT] @{username} [SL]:+5  [Roll]:18 [Bi/Quad]: L-Leg/BL-Leg"
     return result
@@ -66,5 +68,81 @@ def successLevel(skill, roll):
 
     return success
 
-
+def targetLocation(location):
+    if location < 10:
+        return "Head"
     
+    elif location < 25:
+        return "Off Arm"
+    
+    elif location < 45:
+        return "Main Arm"
+
+    elif location < 80:
+        return "Body"
+
+    elif location < 90:
+        return "L-Leg"
+    
+    elif location <= 100:
+        return "R-Leg"
+
+    else:
+        return "ERROR"
+
+def beastLocation(location):
+    if location < 17:
+        return "Head"
+
+    elif location < 57:
+        return "Body"
+
+    elif location < 68:
+        return "FL-Leg"
+
+    elif location < 79:
+        return "FR-Leg"
+
+    elif location < 90:
+        return "BL-Leg"
+
+    elif location <= 100:
+        return "BR-Leg"
+
+    else:
+        return "ERROR"
+        
+
+
+def printAttack(wasAttack, wasFumble, wasCrit, wasImpaled, SL, roll, location):
+    target
+    beast
+    result
+
+    if wasAttack:
+        result += f"[ATT @{username}]" 
+    else:
+        result += f"[DEF @{username}]"
+    
+    if SL > 0:
+        result += "[SL:+" + SL + "] "
+    else:
+        result += "[SL:" + SL + "] "
+
+    if wasCrit:
+        result += "{CRIT!} "
+    
+    if wasImpaled:
+        result += "{IMPALE!} "
+
+    if wasFumble:
+        result += "{FUMBLE!} "
+    elif not wasFumble:
+        target = targetLocation(location)
+        beast = beastLocation(location)
+        result += "[Bi:" + target + "|Quad:" + beast + "]"
+    
+    result += " [Roll:" + roll +"] "
+    return result
+
+
