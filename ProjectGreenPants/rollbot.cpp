@@ -8,7 +8,7 @@
 #include <sstream>
 using namespace std;
 
-int combatRoll(int skill, bool wasAttack)
+int combatRoll(int skill, bool wasAttack) //ported 
 {
 	
 	int roll = 0;
@@ -36,7 +36,7 @@ int combatRoll(int skill, bool wasAttack)
 }
 
 
-int flipDigits(int flippee)
+int flipDigits(int flippee) //ported
 {
 	int ones = 0;
 	int tens = 0;
@@ -50,7 +50,7 @@ int flipDigits(int flippee)
 	return flippedDigit;
 }
 
-bool isCrit(int roll, int SL)
+bool isCrit(int roll, int SL) //ported
 {
 	if (roll % 11 == 0 && SL >= 0)
 	{
@@ -60,7 +60,7 @@ bool isCrit(int roll, int SL)
 		return false;
 }
 
-bool isImpaled(int roll, int SL)
+bool isImpaled(int roll, int SL) //ported
 {
 	if (roll % 10 == 0 && SL >= 0)
 	{
@@ -72,7 +72,7 @@ bool isImpaled(int roll, int SL)
 
 }
 
-bool isFumble(int roll, int SL)
+bool isFumble(int roll, int SL) //ported
 {
 	if (roll % 11 == 0 && SL < 0)
 	{
@@ -82,7 +82,7 @@ bool isFumble(int roll, int SL)
 		return false;
 }
 
-std::string targetLocation(int location)
+std::string targetLocation(int location) // ported
 {
 	
 	if (location < 10)
@@ -121,7 +121,7 @@ std::string targetLocation(int location)
 	}
 }
 
-std::string beastLocation(int location)
+std::string beastLocation(int location) //ported
 {
 
 	if (location < 17)
@@ -160,7 +160,7 @@ std::string beastLocation(int location)
 	}
 }
 
-int successLevel(int skill, int roll) 
+int successLevel(int skill, int roll) // ported
 {
 	int success = 0;
 	roll = roll / 10;
@@ -171,6 +171,7 @@ int successLevel(int skill, int roll)
 	return success;
 }
 
+// ported printAttack
 std::string printAttack(bool wasAttack, bool wasFumble, bool wasCrit, bool wasImpaled, int SL, int roll, int location)
 {
 	std::string target;

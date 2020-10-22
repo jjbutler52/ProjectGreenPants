@@ -2,18 +2,15 @@ import random
 
 def attack (skill, username):
   #  result = f"[ATT] @{username} [SL]:+5  [Roll]:18 [Bi/Quad]: L-Leg/BL-Leg"
-    return combatRoll(skill, username, True)
+    return combatRoll(skill, username, True, random.randint(0 ,100))
 
 def defend (skill, username):
    # result = f"[DEF] @{username} [SL]:+5  [Roll]:18 [Bi/Quad]: L-Leg/BL-Leg"
-    return combatRoll(skill, username, False)
+    return combatRoll(skill, username, False, random.randint(0 ,100))
 
-def combatRoll(skill,username, wasAttack):
-    #roll = 0
-    #sl = 0
-    #location = 0
-
-    roll = random.randint(0 ,100)
+def combatRoll(skill,username, wasAttack, roll):
+  
+   # roll = random.randint(0 ,100)
     sl = successLevel(skill, roll)
     location = flipDigits(roll)
 
@@ -64,7 +61,14 @@ def successLevel(skill, roll):
     roll = roll / 10
     skill = skill / 10
 
-    success = int(skill) - int(roll)
+    if roll >= 96:
+        success = min(-1, success)
+    
+    if roll < 5:
+        success = max(1, success)
+
+    else:
+        success = int(skill) - int(roll)
 
     return int(success)
 
