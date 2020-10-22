@@ -13,11 +13,13 @@ def combatRoll(skill,username, wasAttack, roll):
     sl = successLevel(skill, roll)
     location = flipDigits(roll)
 
-    wasCrit = isCrit(roll, sl)
-    wasImpaled = isImpaled(roll, sl)
-    wasFumble = isFumble(roll, sl)
+    wasCrit = isCrit(roll, skill)
+    wasImpaled = isImpaled(roll, skill)
+    wasFumble = isFumble(roll, skill)
+    wasAutoFail = isAutoFail (roll)
+    wasAutoSuccess = isAutoSuccess (roll)
 
-    response = createResponse(wasAttack, wasFumble, wasCrit, wasImpaled, sl, roll, location, username)
+    response = createResponse(wasAttack, wasFumble, wasCrit, wasImpaled, wasAutoFail, wasAutoSuccess, sl, roll, location, username)
     #print(response)
     return response 
 
@@ -33,23 +35,35 @@ def flipDigits(flippee):
         
     return int (result)
 
-def isCrit(roll, SL):
-    if roll % 11 == 0 and SL >= 0:
+def isCrit(roll, skill):
+    if roll == 99:
+        return False # 99 is auto fail
+    elif roll % 11 == 0 and skill >= roll:
         return True
     else:
         return False
 
-def isImpaled(roll, SL):
-    if roll % 10 == 0 and SL >= 0:
+def isImpaled(roll, skill):
+    if roll == 100:
+        return False # 100 is auto fail
+    elif roll % 10 == 0 and skill >= roll:
         return True
     else:
         return False
 
-def isFumble(roll, SL):
-    if roll % 11 == 0 and SL < 0:
+def isFumble(roll, skill):
+    if (roll % 11 == 0 and skill < roll):
         return True
+    elif roll == 99:
+        return True # 99 is auto fumble
     else: 
         return False
+
+def isAutoFail(roll):
+    return roll >= 96
+
+def isAutoSuccess(roll):
+    return roll <= 5
 
 def successLevel(skill, roll):
     tens = roll / 10
@@ -57,10 +71,10 @@ def successLevel(skill, roll):
 
     success = int(skill) - int(tens)
 
-    if roll >= 96:
+    if isAutoFail(roll):
         success = min(-1, success)
     
-    if roll < 5:
+    if isAutoSuccess(roll):
         success = max(1, success)
     
     return int(success)
@@ -109,9 +123,7 @@ def beastLocation(location):
     else:
         return "ERROR"
 
-
-
-def createResponse(wasAttack, wasFumble, wasCrit, wasImpaled, SL, roll, location, username):
+def createResponse(wasAttack, wasFumble, wasCrit, wasImpaled, wasAutoFail, wasAutoSuccess, SL, roll, location, username):
 
     if wasAttack:
         result = f"[ATT @{username}] " 
@@ -122,6 +134,12 @@ def createResponse(wasAttack, wasFumble, wasCrit, wasImpaled, SL, roll, location
         result += "[SL:+" + str(int(SL)) + "] "
     else:
         result += "[SL:" + str(int(SL)) + "] "
+
+    if wasAutoSuccess:
+        result += "{+} "
+
+    if wasAutoFail:
+        result += "{-} "
 
     if wasCrit:
         result += "{CRIT!} "

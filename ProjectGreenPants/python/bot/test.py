@@ -15,5 +15,9 @@ print (combatRoll(125, "cread", True, 99)) # fumble!
 
 # auto success
 print ("auto success:")
-print (combatRoll(47, "cread", True, 1)) # when skill < 100
+print (combatRoll(1, "cread", True, 4)) # when skill lower than roll
 print (combatRoll(125, "cread", True, 3)) # when skill > 100
+
+# success
+print ("regular success:")
+print (combatRoll (120, "cread", True, 94))
