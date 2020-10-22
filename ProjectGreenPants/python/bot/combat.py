@@ -2,21 +2,16 @@ import random
 
 def attack (skill, username):
   #  result = f"[ATT] @{username} [SL]:+5  [Roll]:18 [Bi/Quad]: L-Leg/BL-Leg"
-    return combatRoll(skill, username, True, random.randint(0 ,100))
+    return combatRoll(skill, username, True, random.randint(1,100))
 
 def defend (skill, username):
    # result = f"[DEF] @{username} [SL]:+5  [Roll]:18 [Bi/Quad]: L-Leg/BL-Leg"
-    return combatRoll(skill, username, False, random.randint(0 ,100))
+    return combatRoll(skill, username, False, random.randint(1,100))
 
 def combatRoll(skill,username, wasAttack, roll):
   
-   # roll = random.randint(0 ,100)
     sl = successLevel(skill, roll)
     location = flipDigits(roll)
-
-    isCrit(roll, sl)
-    isImpaled(roll, sl)
-    isFumble(roll, sl)
 
     wasCrit = isCrit(roll, sl)
     wasImpaled = isImpaled(roll, sl)
@@ -57,11 +52,10 @@ def isFumble(roll, SL):
         return False
 
 def successLevel(skill, roll):
-    success = 0
-    roll = roll / 10
+    tens = roll / 10
     skill = skill / 10
 
-    success = int(skill) - int(roll)
+    success = int(skill) - int(tens)
 
     if roll >= 96:
         success = min(-1, success)
@@ -118,10 +112,6 @@ def beastLocation(location):
 
 
 def createResponse(wasAttack, wasFumble, wasCrit, wasImpaled, SL, roll, location, username):
-    #target
-    #beast
-   # result
-   
 
     if wasAttack:
         result = f"[ATT @{username}] " 
