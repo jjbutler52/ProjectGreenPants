@@ -61,15 +61,14 @@ def successLevel(skill, roll):
     roll = roll / 10
     skill = skill / 10
 
+    success = int(skill) - int(roll)
+
     if roll >= 96:
         success = min(-1, success)
     
     if roll < 5:
         success = max(1, success)
-
-    else:
-        success = int(skill) - int(roll)
-
+    
     return int(success)
 
 def targetLocation(location):
