@@ -1,4 +1,4 @@
-from combat import flipDigits, isCrit, isImpaled, isFumble, isMissfire, successLevel, targetLocation, beastLocation, attack, createResponse, defend, combatRoll, skillRoll
+from combat import flipDigits, isCrit, isImpaled, isFumble, isMissfire, successLevel, targetLocation, beastLocation, attack, createResponse, defend, combatRoll, skillRoll, oopsRoll
 import random
 
 # "expected test"
@@ -56,6 +56,22 @@ print (skillRoll (40, "John", 70))
 print (skillRoll (40, "John", 80))
 print (skillRoll (40, "John", 90))
 print (skillRoll (40, "John", 100))
+
+print ("oops rolls:")
+print (oopsRoll ("John", 1))
+print (oopsRoll ("John", 20))
+print (oopsRoll ("John", 21))
+print (oopsRoll ("John", 40))
+print (oopsRoll ("John", 41))
+print (oopsRoll ("John", 60))
+print (oopsRoll ("John", 61))
+print (oopsRoll ("John", 70))
+print (oopsRoll ("John", 71))
+print (oopsRoll ("John", 80))
+print (oopsRoll ("John", 81))
+print (oopsRoll ("John", 90))
+print (oopsRoll ("John", 91))
+print (oopsRoll ("John", 100))
 
 print ("\nstarting unit tests...")
 

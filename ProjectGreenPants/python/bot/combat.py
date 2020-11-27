@@ -9,6 +9,9 @@ def defend (skill, username):
 def skill (skill, username):
     return skillRoll(skill, username, random.randint(1,100))
 
+def oops (username):
+    return oopsRoll(username, random.randint(1,100))
+
 def combatRoll(skill,username, wasAttack, roll):
   
     sl = successLevel(skill, roll)
@@ -221,4 +224,27 @@ def createSkillResponse(wasFumble, wasCrit, wasAutoFail, wasAutoSuccess, SL, rol
     if not wasFumble and not wasCrit:
         result += "\n" + skillOutcome (SL, roll, skill)
     return result
+
+
+def oopsRoll(username, roll):
+    result = f"[OOPS! @{username}] "
+    result += "[Roll:" + str(roll) +"] : "
+    result += oopsOutcome (username, roll)
+    return result
+
+def oopsOutcome(username, roll):
+    if roll <= 20:
+        return "You catch a part of your anatomy (we recommend you play this for laughs) — lose 1 Wound, ignoring Toughness Bonus or Armour Points."
+    if roll <= 40:
+        return "Your melee weapon jars badly, or ranged weapon malfunctions or slightly breaks – your weapon suffers 1 Damage. Next round, you will act last regardless of Initiative order, Talents, or special rules as you recover (see page 156)."
+    if roll <= 60:
+        return "Your manoeuvre was misjudged, leaving you out of position, or you lose grip of a ranged weapon. Next round, your Action suffers a penalty of –10."
+    if roll <= 70: 
+        return "You stumble badly, finding it hard to right yourself. Lose your next Move."
+    if roll <= 80: 
+        return "You mishandle your weapon, or you drop your ammunition. Miss your next Action."
+    if roll <= 90: 
+        return "You overextend yourself or stumble and twist your ankle. Suffer a Torn Muscle (Minor) injury (see page 179). This counts as a Critical Wound."
+    if roll <= 100: 
+        return "You completely mess up, hitting 1 random ally in range using your rolled units die to determine the SL of the hit. If that’s not possible, you somehow hit yourself in the face and gain a Stunned Condition (see page 169)."
 
