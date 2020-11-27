@@ -1,12 +1,13 @@
 import random
 
 def attack (skill, username):
-  #  result = f"[ATT] @{username} [SL]:+5  [Roll]:18 [Bi/Quad]: L-Leg/BL-Leg"
     return combatRoll(skill, username, True, random.randint(1,100))
 
 def defend (skill, username):
-   # result = f"[DEF] @{username} [SL]:+5  [Roll]:18 [Bi/Quad]: L-Leg/BL-Leg"
     return combatRoll(skill, username, False, random.randint(1,100))
+
+def skill (skill, username):
+    return skillRoll(skill, username, random.randint(1,100))
 
 def combatRoll(skill,username, wasAttack, roll):
   
@@ -21,9 +22,18 @@ def combatRoll(skill,username, wasAttack, roll):
     wasAutoSuccess = isAutoSuccess (roll)
 
     response = createResponse(wasAttack, wasFumble, wasCrit, wasImpaled, wasMissfire, wasAutoFail, wasAutoSuccess, sl, roll, location, username)
-    #print(response)
     return response 
 
+def skillRoll(skill,username, roll):
+  
+    sl = successLevel(skill, roll)
+    wasCrit = isCrit(roll, skill)
+    wasFumble = isFumble(roll, skill)
+    wasAutoFail = isAutoFail (roll)
+    wasAutoSuccess = isAutoSuccess (roll)
+
+    response = createSkillResponse(wasFumble, wasCrit, wasAutoFail, wasAutoSuccess, sl, roll, skill, username)
+    return response 
 
 def flipDigits(flippee):
     ones = 0
@@ -169,4 +179,46 @@ def createResponse(wasAttack, wasFumble, wasCrit, wasImpaled, wasMissfire, wasAu
     result += " [Roll:" + str(roll) +"] "
     return result
 
+def skillOutcome (SL, roll, skill):
+    if SL >= 6:
+        return "[Astounding Success] : The result is as good as it can be, perhaps with extra luck and fortunate coincidences thrown in!"
+    if SL >= 4:
+        return "[Impressive Success] : You achieve your goal with style, exceeding your expectations."
+    if SL >= 2:
+        return "[Success] : You achieve a solid success."
+    if SL >= 0:
+        return "[Marginal Success] : You more or less achieve what you intend, but imperfectly, and perhaps with an unpredictable side effect."
+    if SL >= -1:
+        return "[Marginal FAILURE] : You marginally fail, perhaps accomplishing a portion of what you intended."
+    if SL >= -3:
+        return "[FAILURE] : You just plain do it wrong."
+    if SL >= -5:
+        return "[Impressive FAILURE] : Not only do you mess up, but you also cause additional things to go wrong."
+    return " [Astounding FAILURE] : Everything goes wrong in the worst possible way. The GM will likely add to your woes with unanticipated consequences of your actions. Surely no-one is this unlucky; you have clearly offended the gods."
+
+def createSkillResponse(wasFumble, wasCrit, wasAutoFail, wasAutoSuccess, SL, roll, skill, username):
+
+    result = f"[SKILL @{username}] "
+
+    if SL > 0:
+        result += "[SL:+" + str(int(SL)) + "] "
+    else:
+        result += "[SL:" + str(int(SL)) + "] "
+
+    if wasAutoSuccess:
+        result += "{+} "
+
+    if wasAutoFail:
+        result += "{-} "
+
+    if wasCrit:
+        result += "{CRIT!} "
+
+    if wasFumble:
+        result += "{FUMBLE!} "
+
+    result += "[Roll:" + str(roll) +"]"
+    if not wasFumble and not wasCrit:
+        result += "\n" + skillOutcome (SL, roll, skill)
+    return result
 

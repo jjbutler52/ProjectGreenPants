@@ -9,7 +9,7 @@ green pants revenge bot
 import logging
 import os
 import random
-from combat import attack, defend
+from combat import attack, defend, skill
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
 
 # Enable logging
@@ -26,11 +26,10 @@ def start(update, context):
 
 def help(update, context):
     """Send a message when the command /help is issued."""
-    update.message.reply_text("-Commands-\r\n\r\nAttack:\r\n/a <Skill #>\r\n\t[weapon skill + modifiers like advantage. ex: /a 60]\r\n\r\nDefend:\r\n/d <Skill #>\r\n\t[weapon skill + modifiers like advantage. ex: /d 50]\r\n\r\nRoll Dice:   (1d100)\r\n/r\r\n\t[roll 1d100. ex: /r]\r\n\t[use the ones digit to roll 1d10 and both digits for 2d10]\r\n\r\n-Note-\r\n\r\n\tBi = Biped(Human/Humanoid)\r\n\tQuad = Quadruped(Beast)")
+    update.message.reply_text("-Commands-\r\n\r\nAttack:\r\n\t/a <Skill #>\r\n\t[weapon skill + modifiers like advantage. ex: /a 60]\r\n\r\nDefend:\r\n\t/d <Skill #>\r\n\t[weapon skill + modifiers like advantage. ex: /d 50]\r\n\r\nRoll:   (1d100)\r\n\t/r\r\n\t[roll 1d100. ex: /r]\r\n\t[use the ones digit to roll 1d10 and both digits for 2d10]\r\n\r\nSkill:\r\n\t/s <Skill #>\r\n\t[skill + modifiers. ex: /s 50]\r\n\r\n-Note-\r\n\r\n\tBi = Biped(Human/Humanoid)\r\n\tQuad = Quadruped(Beast)")
 
 def attack_handler(update, context):
     username = update.message.from_user.first_name
-    #response = f"[ATT] @{username} [SL]:+5  [Roll]:18  [Bi/Quad]: L-Leg/BL-Leg"   
     response = ""
     if len (context.args) == 0 or not context.args[0].isdigit():
         response = "attack usage: /a <skill>\r\n\t\twhere <skill> is your weapon skill + any combat modifiers"
@@ -40,12 +39,20 @@ def attack_handler(update, context):
 
 def defend_handler(update, context):
     username = update.message.from_user.first_name
-    #response = f"[DEF] @{username} [SL]:+5  [Roll]:18  [Bi/Quad]: L-Leg/BL-Leg"   
     response = ""
     if len (context.args) == 0 or not context.args[0].isdigit():
         response = "defend usage: /d <skill>\r\n\t\twhere <skill> is your weapon skill + any combat modifiers"
     else:
         response = defend (int(context.args[0]), username)
+    context.bot.send_message(chat_id=update.effective_chat.id, text=response)
+
+def skill_handler(update, context):
+    username = update.message.from_user.first_name
+    response = ""
+    if len (context.args) == 0 or not context.args[0].isdigit():
+        response = "skill usage: /s <skill>\r\n\t\twhere <skill> is your skill + any modifiers"
+    else:
+        response = skill (int(context.args[0]), username)
     context.bot.send_message(chat_id=update.effective_chat.id, text=response)
 
 def roll_handler(update, context):
@@ -78,6 +85,7 @@ def main():
     dp.add_handler(CommandHandler(["a","attack"], attack_handler))
     dp.add_handler(CommandHandler(["d","defend"], defend_handler))
     dp.add_handler(CommandHandler(["r","roll"], roll_handler))
+    dp.add_handler(CommandHandler(["s","skill"], skill_handler))
  
     # on noncommand i.e message - echo the message on Telegram
     #  dp.add_handler(MessageHandler(Filters.text, echo))
