@@ -81,6 +81,8 @@ ext (not isFumble (98, 50), "98 is not a fumble!")
 ext (not isFumble (97, 50), "97 is not a fumble!")
 ext (not isFumble (96, 50), "96 is not a fumble!")
 
+ext (isCrit (1, 1), "1 is auto crit!")
+
 ext (isMissfire (100, 50), "100 is an auto missfire!")
 ext (isMissfire (88, 50), "88 is missfire!")
 ext (isMissfire (66, 50), "66 is a missfire!")
