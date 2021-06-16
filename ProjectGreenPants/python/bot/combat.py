@@ -54,6 +54,8 @@ def isCrit(roll, skill):
         return False # 99 is auto fail
     elif roll % 11 == 0 and skill >= roll:
         return True
+    elif roll == 1:
+        return True # 1 is auto crit
     else:
         return False
 
@@ -159,10 +161,10 @@ def createResponse(wasAttack, wasFumble, wasCrit, wasImpaled, wasMissfire, wasAu
         result += "[SL:" + str(int(SL)) + "] "
 
     if wasAutoSuccess:
-        result += "{+} "
+        result += "{AUTO SUCCESS} "
 
     if wasAutoFail:
-        result += "{-} "
+        result += "{AUTO FAIL} "
 
     if wasCrit:
         result += "{CRIT!} "
@@ -209,10 +211,10 @@ def createSkillResponse(wasFumble, wasCrit, wasAutoFail, wasAutoSuccess, SL, rol
         result += "[SL:" + str(int(SL)) + "] "
 
     if wasAutoSuccess:
-        result += "{+} "
+        result += "{AUTO SUCCESS} "
 
     if wasAutoFail:
-        result += "{-} "
+        result += "{AUTO FAIL} "
 
     if wasCrit:
         result += "{CRIT!} "
