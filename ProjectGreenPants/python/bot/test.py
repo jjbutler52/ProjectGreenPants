@@ -1,4 +1,4 @@
-from combat import flipDigits, isCrit, isImpaled, isFumble, isMissfire, successLevel, targetLocation, beastLocation, attack, createResponse, defend, combatRoll, skillRoll, oopsRoll
+from combat import flipDigits, isCrit, isImpaled, isFumble, isMissfire, successLevel, targetLocation, beastLocation, attack, createResponse, defend, combatRoll, skillRoll, oopsRoll, windsRoll, windsOutcome
 import random
 
 # "expected test"
@@ -89,5 +89,17 @@ ext (isMissfire (66, 50), "66 is a missfire!")
 ext (not isMissfire (99, 50), "99 is a fumble but not a missfire!")
 ext (not isMissfire (77, 50), "77 is a fumble but not a missfire!")
 ext (not isMissfire (44, 50), "44 is NOT a missfire!")
+
+ext (windsOutcome (1) == -30, "wind roll of 1 is -30 to casting and channeling!")
+ext (windsOutcome (2) == -10, "wind roll of 2-3 is -10 to casting and channeling!")
+ext (windsOutcome (3) == -10, "wind roll of 2-3 is -10 to casting and channeling!")
+ext (windsOutcome (4) == 0, "wind roll of 4-7 is +0 to casting and channeling!")
+ext (windsOutcome (5) == 0, "wind roll of 4-7 is +0 to casting and channeling!")
+ext (windsOutcome (6) == 0, "wind roll of 4-7 is +0 to casting and channeling!")
+ext (windsOutcome (7) == 0, "wind roll of 4-7 is +0 to casting and channeling!")
+ext (windsOutcome (8) == +10, "wind roll of 8-9 is +10 to casting and channeling!")
+ext (windsOutcome (9) == +10, "wind roll of 8-9 is +10 to casting and channeling!")
+ext (windsOutcome (10) == +30, "wind roll of 10 is +30 to casting and channeling!")
+
 
 print ("all tests passed!\n")

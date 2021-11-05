@@ -12,8 +12,10 @@ def skill (skill, username):
 def oops (username):
     return oopsRoll(username, random.randint(1,100))
 
+def winds (username):
+    return windsRoll(username, random.randint(1, 10))
+
 def combatRoll(skill,username, wasAttack, roll):
-  
     sl = successLevel(skill, roll)
     location = flipDigits(roll)
 
@@ -227,6 +229,24 @@ def createSkillResponse(wasFumble, wasCrit, wasAutoFail, wasAutoSuccess, SL, rol
         result += "\n" + skillOutcome (SL, roll, skill)
     return result
 
+def windsRoll(username, roll):
+    result = f"[Winds of Magic! @{username}] "
+    result += "[Roll:" + str(roll) +"] : "
+    result += str (windsOutcome (roll)) + " to Casting and Channeling."
+    return result
+
+def windsOutcome(roll):
+    if roll == 1:
+        return -30
+    if roll == 2 or roll == 3:
+        return -10
+    if roll == 4 or roll == 5 or roll == 6 or roll == 7:
+        return 0
+    if roll == 8 or roll == 9:
+        return +10
+    if roll == 10:
+        return 30
+    return 0
 
 def oopsRoll(username, roll):
     result = f"[OOPS! @{username}] "
