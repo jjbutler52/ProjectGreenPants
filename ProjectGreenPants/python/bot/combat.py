@@ -232,7 +232,11 @@ def createSkillResponse(wasFumble, wasCrit, wasAutoFail, wasAutoSuccess, SL, rol
 def windsRoll(username, roll):
     result = f"[Winds of Magic! @{username}] "
     result += "[Roll:" + str(roll) +"] : "
-    result += str (windsOutcome (roll)) + " to Casting and Channeling."
+    outcome = windsOutcome (roll)
+    if outcome >= 0:
+        result += "+" + str (windsOutcome (roll)) + " to Casting and Channeling."
+    else:
+        result += str (windsOutcome (roll)) + " to Casting and Channeling."
     return result
 
 def windsOutcome(roll):
