@@ -9,7 +9,7 @@ green pants revenge bot
 import logging
 import os
 import random
-from combat import attack, defend, oops, skill
+from combat import attack, defend, oops, skill, winds
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
 
 # Enable logging
@@ -26,7 +26,7 @@ def start(update, context):
 
 def help(update, context):
     """Send a message when the command /help is issued."""
-    update.message.reply_text("-Commands-\r\n\r\nAttack:\r\n\t/a <Skill #>\r\n\t[weapon skill + modifiers like advantage. ex: /a 60]\r\n\r\nDefend:\r\n\t/d <Skill #>\r\n\t[weapon skill + modifiers like advantage. ex: /d 50]\r\n\r\nOops:\r\n\t/o\r\n\t[roll 1d100 on oops! table. ex: /o]\r\n\r\nRoll:   (1d100)\r\n\t/r\r\n\t[roll 1d100. ex: /r]\r\n\t[use the ones digit to roll 1d10 and both digits for 2d10]\r\n\r\nSkill:\r\n\t/s <Skill #>\r\n\t[skill + modifiers. ex: /s 50]\r\n\r\n-Note-\r\n\r\n\tBi = Biped(Human/Humanoid)\r\n\tQuad = Quadruped(Beast)")
+    update.message.reply_text("-Commands-\r\n\r\nAttack:\r\n\t/a <Skill #>\r\n\t[weapon skill + modifiers like advantage. ex: /a 60]\r\n\r\nDefend:\r\n\t/d <Skill #>\r\n\t[weapon skill + modifiers like advantage. ex: /d 50]\r\n\r\nOops:\r\n\t/o\r\n\t[roll 1d100 on oops! table. ex: /o]\r\n\r\nRoll:   (1d100)\r\n\t/r\r\n\t[roll 1d100. ex: /r]\r\n\t[use the ones digit to roll 1d10 and both digits for 2d10]\r\n\r\nSkill:\r\n\t/s <Skill #>\r\n\t[skill + modifiers. ex: /s 50]\r\n\r\nWinds:\r\n\t/w\r\n\t[determine the strength of the winds of magic]\r\n\r\n-Note-\r\n\r\n\tBi = Biped(Human/Humanoid)\r\n\tQuad = Quadruped(Beast)")
 
 def attack_handler(update, context):
     username = update.message.from_user.first_name
@@ -52,12 +52,20 @@ def oops_handler(update, context):
     response = oops (username)
     context.bot.send_message(chat_id=update.effective_chat.id, text=response)
 
+def winds_handler(update, context):
+    username = update.message.from_user.first_name
+    response = ""
+    response = winds (username)
+    context.bot.send_message(chat_id=update.effective_chat.id, text=response)
+
 def roll_handler(update, context):
     username = update.message.from_user.first_name
     result = int(random.uniform (1, 100))
-    response = f"[Roll @{username}]: {result}"   
+    result10a = int(random.uniform (1, 10))
+    result10b = int(random.uniform (1, 10))
+    result2d10 = result10a + result10b
+    response = f"[Roll @{username}]: 1d100={result}          1d10={result10a}          2d10={result2d10}"   
     context.bot.send_message(chat_id=update.effective_chat.id, text=response)
-
 
 def skill_handler(update, context):
     username = update.message.from_user.first_name
@@ -94,7 +102,8 @@ def main():
     dp.add_handler(CommandHandler(["r","roll"], roll_handler))
     dp.add_handler(CommandHandler(["s","skill"], skill_handler))
     dp.add_handler(CommandHandler(["o","oops"], oops_handler))
- 
+    dp.add_handler(CommandHandler(["w","winds"], winds_handler))
+
     # on noncommand i.e message - echo the message on Telegram
     #  dp.add_handler(MessageHandler(Filters.text, echo))
 
