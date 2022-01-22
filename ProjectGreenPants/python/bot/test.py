@@ -1,4 +1,4 @@
-from combat import flipDigits, isCrit, isImpaled, isFumble, isMissfire, successLevel, targetLocation, beastLocation, attack, createResponse, defend, combatRoll, skillRoll, oopsRoll, windsRoll, windsOutcome
+from combat import flipDigits, isCrit, isImpaled, isImpenetrable, isFumble, isMissfire, successLevel, targetLocation, beastLocation, attack, createResponse, defend, combatRoll, skillRoll, oopsRoll, windsRoll, windsOutcome
 import random
 
 # "expected test"
@@ -82,6 +82,10 @@ ext (not isFumble (97, 50), "97 is not a fumble!")
 ext (not isFumble (96, 50), "96 is not a fumble!")
 
 ext (isCrit (1, 1), "1 is auto crit!")
+ext (not isImpenetrable (11, False), "No crit so not impenetrable")
+ext (not isImpenetrable (22, True), "Even roll is not impenetrable")
+ext (isImpenetrable (11, True), "odd roll is impenetrable")
+ext (not isImpenetrable (11, False), "odd roll but was not a crit impenetrable")
 
 ext (isMissfire (100, 50), "100 is an auto missfire!")
 ext (isMissfire (88, 50), "88 is missfire!")

@@ -20,13 +20,14 @@ def combatRoll(skill,username, wasAttack, roll):
     location = flipDigits(roll)
 
     wasCrit = isCrit(roll, skill)
+    wasImpenetrable = isImpenetrable (roll, wasCrit)
     wasImpaled = isImpaled(roll, skill)
     wasFumble = isFumble(roll, skill)
     wasMissfire = isMissfire(roll, skill)
     wasAutoFail = isAutoFail (roll)
     wasAutoSuccess = isAutoSuccess (roll)
 
-    response = createResponse(wasAttack, wasFumble, wasCrit, wasImpaled, wasMissfire, wasAutoFail, wasAutoSuccess, sl, roll, location, username)
+    response = createResponse(wasAttack, wasFumble, wasCrit, wasImpaled, wasImpenetrable, wasMissfire, wasAutoFail, wasAutoSuccess, sl, roll, location, username)
     return response 
 
 def skillRoll(skill,username, roll):
@@ -58,6 +59,12 @@ def isCrit(roll, skill):
         return True
     elif roll == 1:
         return True # 1 is auto crit
+    else:
+        return False
+
+def isImpenetrable (roll, wasCrit):
+    if wasCrit and roll != 1 and roll % 2 != 0:
+        return True
     else:
         return False
 
@@ -150,7 +157,7 @@ def beastLocation(location):
     else:
         return "ERROR"
 
-def createResponse(wasAttack, wasFumble, wasCrit, wasImpaled, wasMissfire, wasAutoFail, wasAutoSuccess, SL, roll, location, username):
+def createResponse(wasAttack, wasFumble, wasCrit, wasImpaled, wasImpenetrable, wasMissfire, wasAutoFail, wasAutoSuccess, SL, roll, location, username):
 
     if wasAttack:
         result = f"[ATT @{username}] " 
@@ -173,6 +180,9 @@ def createResponse(wasAttack, wasFumble, wasCrit, wasImpaled, wasMissfire, wasAu
 
     if wasImpaled:
         result += "{IMPALE!} "
+
+    if wasImpenetrable:
+        result += "{IMPENETRABLE!} "
 
     if wasFumble and wasMissfire:
         result += "{MISSFIRE/FUMBLE!} "
