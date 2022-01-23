@@ -225,8 +225,7 @@ def createSkillResponse(wasFumble, wasCrit, wasAutoFail, wasAutoSuccess, SL, rol
         result += "{FUMBLE!} "
 
     result += "[Roll:" + str(roll) +"]"
-    if not wasFumble and not wasCrit:
-        result += "\n" + skillOutcome (SL, roll, skill)
+    result += "\n" + skillOutcome (SL, roll, skill)
     return result
 
 def windsRoll(username, roll):
