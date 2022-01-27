@@ -51,7 +51,7 @@ one user:
 	6. Download the app
 **[link](https://github.com/jjbutler52/ProjectGreenPants) to the github repository**
 		
-![](ReadMe/image2.png)
+![image2](ReadMe/image2.png)
 	
 	click on the green button(Code)
 	Click the option to download the zip file
