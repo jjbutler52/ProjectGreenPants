@@ -16,10 +16,21 @@ It's free to run your own bot for your games.  Only one person needs to setup th
 	
 ## Bot Usage
 type "/h" to get a list of available commands
+
+example:
 	
-attack usage: /a >skill< - Where >skill< is your weapon skill + any combat modifiers
-					   
-defend usage: /d >skill< - Where >skill< is your weapon skill + any combat modifiers
+	1. A player with a melee skill of 50 would type:  /a 50 
+
+		the script will roll to attack and show the attacker's SL ("Success Level"):
+		[ATT @John][SL:+3][Bi:Main Arm|Quad:Body][Roll:23] 
+	
+	2. The defender with a melee skill of 40 would type: /d 40
+		
+		the script will roll to defend and show the defender's SL.
+		[DEF @John][SL:+2][Bi:Main Arm|Quad:Body][Roll:23] 
+			
+	3. Results include hit locations (biped and quadraped), crits, fumbles, impales, blackpowder missfires, etc.
+	
 ## Setup Instructions
 This will be simple to setup just following the directions below:
 
