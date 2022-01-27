@@ -19,17 +19,33 @@ Type "/h" in a telegram chat group where the bot is present to get a list of ava
 
 example:
 	
-	1. A player with a melee skill of 50 would type:  /a 50 
+	1. **ATTACK**: A player with a melee skill of 50 would type:  /a 50 
 
-		the script will roll to attack and show the attacker's SL ("Success Level"):
+		The script will roll to attack and show the attacker's SL ("Success Level"):
 		[ATT @John][SL:+3][Bi:Main Arm|Quad:Body][Roll:23] 
 	
-	2. The defender with a melee skill of 40 would type: /d 40
+	2. **DEFEND**: The defender with a melee skill of 40 would type: /d 40
 		
-		the script will roll to defend and show the defender's SL.
-		[DEF @John][SL:+2][Bi:Main Arm|Quad:Body][Roll:23] 
-			
-	3. Results include hit locations (biped and quadruped), crits, fumbles, impales, blackpowder missfires, etc.
+		The script will roll to defend and show the defender's SL.
+		[DEF @Colin][SL:+2][Bi:Main Arm|Quad:Body][Roll:23] 
+	
+		The result of SL: +2 from Colin's defense is compared to John's attack at SL: +3.  
+		In this case John scores a hit at +1 SL vs Colin's defense.
+	
+	3. **SKILLS**: A player using a skill of level 58 would type: /s 58
+	
+		The script will roll and display the results from the outcome table.
+		[SKILL @Mike] [SL:-1] [Roll:60]
+		[Marginal FAILURE] : You marginally fail, perhaps accomplishing a portion of what you intended.
+	
+	4. **DICE**: Roll dice with /r.  Results include 1d100, 1d10, and 2d10.
+	
+		[Roll @Jason]: 1d100=58          1d10=1          2d10=10
+	
+	5. Results include hit locations (biped and quadruped), crits, fumbles, impales, blackpowder missfires, etc.
+	
+		For example, a player using a skill might roll with /s 64 and get the following critical on "doubles":
+		[SKILL @Daniel] [SL:+5] {CRIT!} [Roll:11]
 	
 ## Setup Instructions
 This will be simple to setup just following the directions below:
