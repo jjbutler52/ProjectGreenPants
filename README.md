@@ -29,7 +29,7 @@ example:
 		the script will roll to defend and show the defender's SL.
 		[DEF @John][SL:+2][Bi:Main Arm|Quad:Body][Roll:23] 
 			
-	3. Results include hit locations (biped and quadraped), crits, fumbles, impales, blackpowder missfires, etc.
+	3. Results include hit locations (biped and quadruped), crits, fumbles, impales, blackpowder missfires, etc.
 	
 ## Setup Instructions
 This will be simple to setup just following the directions below:
