@@ -15,7 +15,7 @@ For example, you can attack, defend, use a skill etc…
 It's free to run your own bot for your games.  Only one person needs to setup the bot and everyone else just needs a telegram account and a private telegram chat with the bot and all members.
 	
 ## Bot Usage
-type "/h" to get a list of available commands
+Type "/h" in a telegram chat group where the bot is present to get a list of available commands.
 
 example:
 	
