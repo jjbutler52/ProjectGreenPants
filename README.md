@@ -34,7 +34,7 @@ one user:
 	3. install python 
 **[link](https://www.python.org/downloads/) for python download.**
 		
-![image1](ReadMe/image1.png)
+![image1](ProjectGreenPants/ReadMe/image1.png)
 		
 	Choose Install Now option.
 	Check box to Add Python 3.xx to PATH
@@ -51,7 +51,7 @@ one user:
 	6. Download the app
 **[link](https://github.com/jjbutler52/ProjectGreenPants) to the github repository**
 		
-![image2](ReadMe/image2.png)
+![image2](ProjectGreenPants/ReadMe/image2.png)
 	
 	click on the green button(Code)
 	Click the option to download the zip file
@@ -62,7 +62,7 @@ one user:
 	Click on the 3 horizontal lines in the upper left corner
 	Then click on New Group
 
-![image3](ReadMe/image3.png)
+![image3](ProjectGreenPants/ReadMe/image3.png)
 		
 	Add all of your friends and then add your bot as you would another member (this will be name of the bot created in step 2)
 		
