@@ -1,5 +1,5 @@
 # ProjectGreenPants
-Roll-Bot for playing Warhammer Fantasy Role Playing 4th Ed (https://www.cubicle7games.com/our-games/warhammer-fantasy-roleplay/)
+Dice Rolling Bot for playing Warhammer Fantasy Role Playing 4th Ed (https://www.cubicle7games.com/our-games/warhammer-fantasy-roleplay/)
 
 
 <a brief but clear understanding of why someone should be interested>
