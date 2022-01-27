@@ -22,7 +22,7 @@ https://desktop.telegram.org/
 (this also works on all mobile devices, pcs, tables that support telegram)
 
 	2. create a private bot and a token by going here (takes 2 minutes or less):
-	https://core.telegram.org/bots#6-botfather
+	https://core.telegram.org/bots#6-botfather/
 	this will create and return a token in 2 minutes or less:  110201543:AAHdqTcvCH1vGWJxfSeofSAs0K5PALDsaw  <- SAMPLE TOKEN
 	DO NOT SHARE YOUR PRIVATE TOKEN WITH ANYONE
 	Save the bots name somewhere so you don't forget it (just write it down for now)
