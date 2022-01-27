@@ -1,9 +1,11 @@
 # ProjectGreenPants
-Dice Rolling Bot for playing Warhammer Fantasy Role Playing 4th Ed (https://www.cubicle7games.com/our-games/warhammer-fantasy-roleplay/)
+Dice Rolling Bot for playing Warhammer Fantasy Role Playing 4th Ed (WFRP)
+
+**[Link to Warhammer site](https://www.cubicle7games.com/our-games/warhammer-fantasy-roleplay/)**
 
 
 <a brief but clear understanding of why someone should be interested>
-Want to play Warhammer fantasy RPG with remote friends in a telegram chat?
+Want to play Warhammer Fantasy RPG with remote friends in a telegram chat?
 For example, you can attack, defend, use a skill etc…
 
 
@@ -11,6 +13,13 @@ For example, you can attack, defend, use a skill etc…
 
 ## Summary
 It's free to run your own bot for your games.  Only one person needs to setup the bot and everyone else just needs a telegram account and a private telegram chat with the bot and all members.
+	
+## Bot Usage
+type "/h" to get a list of available commands
+	
+attack usage: /a >skill< - Where >skill< is your weapon skill + any combat modifiers
+					   
+defend usage: /d >skill< - Where >skill< is your weapon skill + any combat modifiers
 ## Setup Instructions
 This will be simple to setup just following the directions below:
 
@@ -61,9 +70,6 @@ one user:
 	7. Go to Telegram app and create a private group
 	Click on the 3 horizontal lines in the upper left corner
 	Then click on New Group
-
-![image3](ProjectGreenPants/ReadMe/image3.png)
-		
 	Add all of your friends and then add your bot as you would another member (this will be name of the bot created in step 2)
 		
 	8.  Run the bot when you are going to play your game with friends
