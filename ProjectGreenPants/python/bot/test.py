@@ -1,4 +1,4 @@
-from combat import flipDigits, isCrit, isImpaled, isImpenetrable, isFumble, isMissfire, successLevel, targetLocation, beastLocation, attack, createResponse, defend, combatRoll, skillRoll, oopsRoll, windsRoll, windsOutcome
+from combat import flipDigits, isCrit, isImpaled, isImpenetrable, isFumble, isMissfire, successLevel, targetLocation, beastLocation, attack, createResponse, defend, combatRoll, skillRoll, multiskillRoll, oopsRoll, windsRoll, windsOutcome
 import random
 
 # "expected test"
@@ -57,6 +57,8 @@ print (skillRoll (40, "John", 80))
 print (skillRoll (40, "John", 90))
 print (skillRoll (40, "John", 100))
 
+print (multiskillRoll (30, "John", [10, 20, 30, 40, 50]))
+
 print ("oops rolls:")
 print (oopsRoll ("John", 1))
 print (oopsRoll ("John", 20))
@@ -104,6 +106,5 @@ ext (windsOutcome (7) == 0, "wind roll of 4-7 is +0 to casting and channeling!")
 ext (windsOutcome (8) == +10, "wind roll of 8-9 is +10 to casting and channeling!")
 ext (windsOutcome (9) == +10, "wind roll of 8-9 is +10 to casting and channeling!")
 ext (windsOutcome (10) == +30, "wind roll of 10 is +30 to casting and channeling!")
-
 
 print ("all tests passed!\n")

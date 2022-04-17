@@ -9,6 +9,13 @@ def defend (skill, username):
 def skill (skill, username):
     return skillRoll(skill, username, random.randint(1,100))
 
+def multiskill (skill, username, count):
+    rolls = []
+    for r in range (count):
+        rolls.append (random.randint(1,100))
+    return multiskillRoll(skill, username, rolls)
+
+
 def oops (username):
     return oopsRoll(username, random.randint(1,100))
 
@@ -29,6 +36,36 @@ def combatRoll(skill,username, wasAttack, roll):
 
     response = createResponse(wasAttack, wasFumble, wasCrit, wasImpaled, wasImpenetrable, wasMissfire, wasAutoFail, wasAutoSuccess, sl, roll, location, username)
     return response 
+
+def multiskillRoll(skill,username, rolls):
+    response = "[multiple skill rolls]\n\n"
+    critCount = 0
+    fumbleCount = 0
+    successCount = 0
+    failCount = 0
+    for roll in rolls:
+        sl = successLevel(skill, roll)
+        wasCrit = isCrit(roll, skill)
+        wasFumble = isFumble(roll, skill)
+        wasAutoFail = isAutoFail (roll)
+        wasAutoSuccess = isAutoSuccess (roll)   
+
+        if wasCrit == True:
+            critCount += 1
+        if wasFumble == True:
+            fumbleCount += 1
+        if sl >= 0:
+            successCount += 1
+        else:
+            failCount += 1
+
+        response += "\t\t" + createSkillResponse(wasFumble, wasCrit, wasAutoFail, wasAutoSuccess, sl, roll, skill, username)
+        response += "\n"
+
+    response += "\n"
+    response += "[pass: " + str (successCount) + "\tfail: " + str (failCount) + "]"
+    response += "\t\t\t[crits: " + str (critCount) + "\tfumbles: " + str (fumbleCount) + "]"
+    return response
 
 def skillRoll(skill,username, roll):
   

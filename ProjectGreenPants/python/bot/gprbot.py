@@ -9,7 +9,7 @@ green pants revenge bot
 import logging
 import os
 import random
-from combat import attack, defend, oops, skill, winds
+from combat import attack, defend, multiskill, oops, skill, winds
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
 
 # Enable logging
@@ -26,7 +26,7 @@ def start(update, context):
 
 def help(update, context):
     """Send a message when the command /help is issued."""
-    update.message.reply_text("-Commands-\r\n\r\nAttack:\r\n\t/a <Skill #>\r\n\t[weapon skill + modifiers like advantage. ex: /a 60]\r\n\r\nDefend:\r\n\t/d <Skill #>\r\n\t[weapon skill + modifiers like advantage. ex: /d 50]\r\n\r\nOops:\r\n\t/o\r\n\t[roll 1d100 on oops! table. ex: /o]\r\n\r\nRoll:   (1d100, 1d10, 2d10)\r\n\t/r\r\n\t[randomly generate rolls for 1d100, 1d10, 2d10. ex: /r]\r\n\r\nSkill:\r\n\t/s <Skill #>\r\n\t[skill + modifiers. ex: /s 50]\r\n\r\nWinds:\r\n\t/w\r\n\t[determine the strength of the winds of magic.  ex. /w]\r\n\r\n-Note-\r\n\r\n\tBi = Biped(Human/Humanoid)\r\n\tQuad = Quadruped(Beast)")
+    update.message.reply_text("-Commands-\r\n\r\nAttack:\r\n\t/a <Skill #>\r\n\t[weapon skill + modifiers like advantage. ex: /a 60]\r\n\r\nDefend:\r\n\t/d <Skill #>\r\n\t[weapon skill + modifiers like advantage. ex: /d 50]\r\n\r\nOops:\r\n\t/o\r\n\t[roll 1d100 on oops! table. ex: /o]\r\n\r\nRoll:   (1d100, 1d10, 2d10)\r\n\t/r\r\n\t[randomly generate rolls for 1d100, 1d10, 2d10. ex: /r]\r\n\r\nSkill:\r\n\t/s <Skill #>\r\n\t[skill + modifiers. ex: /s 50]\r\n\r\nSkill (multiple):\r\n\t/sm <Skill #> <Count>\r\n\t[skill + modifiers and count of rolls to make. ex: /sm 50 8]\r\n\r\nWinds:\r\n\t/w\r\n\t[determine the strength of the winds of magic.  ex. /w]\r\n\r\n-Note-\r\n\r\n\tBi = Biped(Human/Humanoid)\r\n\tQuad = Quadruped(Beast)")
 
 def attack_handler(update, context):
     username = update.message.from_user.first_name
@@ -76,6 +76,15 @@ def skill_handler(update, context):
         response = skill (int(context.args[0]), username)
     context.bot.send_message(chat_id=update.effective_chat.id, text=response)
 
+def multiskill_handler(update, context):
+    username = update.message.from_user.first_name
+    response = ""
+    if len (context.args) != 2 or not context.args[0].isdigit() or not context.args[1].isdigit():
+        response = "multiskill usage: /sm <skill> <count> \r\n\t\twhere <skill> is your skill + any modifiers and <count> is the number of attempts to make"
+    else:
+        response = multiskill (int(context.args[0]), username, int(context.args[1]))
+    context.bot.send_message(chat_id=update.effective_chat.id, text=response)
+
 def echo(update, context):
     """Echo the user message."""
     update.message.reply_text(update.message.text)
@@ -101,6 +110,7 @@ def main():
     dp.add_handler(CommandHandler(["d","defend"], defend_handler))
     dp.add_handler(CommandHandler(["r","roll"], roll_handler))
     dp.add_handler(CommandHandler(["s","skill"], skill_handler))
+    dp.add_handler(CommandHandler(["sm","multiskill"], multiskill_handler))
     dp.add_handler(CommandHandler(["o","oops"], oops_handler))
     dp.add_handler(CommandHandler(["w","winds"], winds_handler))
 
