@@ -77,7 +77,7 @@ one user:
 	
 	4. install python-telegram-bot package
 	Open windows command prompt (type "CMD" into windows taskbar search)
-	From command prompt type "pip install python-telegram-bot"
+	From command prompt type "pip install --force-reinstall -v "python-telegram-bot==13.3"
 
 	5. Create an environment variable
 	From command prompt type "setx GPR_BOT_TOKEN <YOUR TOKEN HERE>"
