@@ -57,7 +57,7 @@ all users:
 one user:
 
 	1. install telegram: https://desktop.telegram.org/ 
-	(this also works on all mobile devices, pcs, tables that support telegram)
+	(this also works on all mobile devices, pcs, tablets that support telegram)
 
 	2. create a private bot and a token by going here (takes 2 minutes or less):
 	https://core.telegram.org/bots#6-botfather/
