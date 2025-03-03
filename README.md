@@ -78,7 +78,6 @@ one user:
 	4. install python-telegram-bot package
 	Open windows command prompt (type "CMD" into windows taskbar search)
 	From command prompt type "pip install --force-reinstall -v "python-telegram-bot==13.3"
-
 also run these:
 pip install urllib3==1.26.11  (on one line) and pip install standard-imghdr (on a second line)  (i.e. install both of these)
 
