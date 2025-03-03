@@ -79,6 +79,9 @@ one user:
 	Open windows command prompt (type "CMD" into windows taskbar search)
 	From command prompt type "pip install --force-reinstall -v "python-telegram-bot==13.3"
 
+also run these:
+pip install urllib3==1.26.11  (on one line) and pip install standard-imghdr (on a second line)  (i.e. install both of these)
+
 	5. Create an environment variable
 	From command prompt type "setx GPR_BOT_TOKEN <YOUR TOKEN HERE>"
 	Example: "setx GPR_BOT_TOKEN 110201543:AAHdqTcvCH1vGWJxfSeofSAs0K5PALDsaw"
