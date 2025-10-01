@@ -9,7 +9,7 @@ green pants revenge bot
 import logging
 import os
 import random
-from combat import attack, defend, multiskill, oops, skill, winds
+from combat import attack, defend, multiskill, oops, skill, winds, probability
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
 
 # Enable logging
@@ -59,13 +59,64 @@ def winds_handler(update, context):
     context.bot.send_message(chat_id=update.effective_chat.id, text=response)
 
 def roll_handler(update, context):
+    argc = len (context.args)
     username = update.message.from_user.first_name
-    result = int(random.uniform (1, 100))
-    result10a = int(random.uniform (1, 10))
-    result10b = int(random.uniform (1, 10))
-    result2d10 = result10a + result10b
-    response = f"[Roll @{username}]: 1d100={result}          1d10={result10a}          2d10={result2d10}"   
+    if argc == 0:
+        username = update.message.from_user.first_name
+        result = int(random.randint (1, 100))
+        result10a = int(random.randint (1, 10))
+        result10b = int(random.randint (1, 10))
+        result2d10 = result10a + result10b
+        response = f"[roll @{username}]: 1d100={result}          1d10={result10a}          2d10={result2d10}"   
+        context.bot.send_message(chat_id=update.effective_chat.id, text=response)
+        return
+            
+    if argc == 1 and context.args[0].isdigit():
+        response = f"[roll @{username}]: "
+        rolls = int(context.args[0])
+        for r in range (rolls):
+            response += str (random.randint (1, 10)) + ' '
+        context.bot.send_message(chat_id=update.effective_chat.id, text=response)
+        return
+
+    if argc == 2 and context.args[0].isdigit() and context.args[1].isdigit():
+        response = f"[ROLL @{username}]: "
+        rolls = int(context.args[0])
+        skill = int(context.args[1])
+        S = 0
+        F = 0
+        response += '[' + str(rolls) + 'd10 vs ' + str (skill) + '] \n    '
+        for r in range (rolls):
+            rnd = random.randint (1, 10)
+            if rnd <= skill:
+                S += 1
+            else:
+                F += 1
+            response += str (rnd)
+            response += '  '
+        response += '   ['
+        if (S > 0):
+            response += 'S:' + str (S)
+        if (F > 0):
+            if (S > 0):
+                response += '  '
+            response += 'F:' + str (F)
+        response += ']'
+        context.bot.send_message(chat_id=update.effective_chat.id, text=response)
+        return
+    response = f"[roll @{username}] usage: /r or /r <# of d10s> or /r <characteristic> <skill>"
     context.bot.send_message(chat_id=update.effective_chat.id, text=response)
+    return    
+
+def probability_handler(update, context):
+    username = update.message.from_user.first_name
+    response = ""
+    if len (context.args) != 2 or not context.args[0].isdigit() or not context.args[1].isdigit():
+        response =  f"[probability @{username}] usage: /p <characteristic> <skill>"
+    else:
+        response = probability (int(context.args[0]), int(context.args[1]))
+    context.bot.send_message(chat_id=update.effective_chat.id, text=response)
+
 
 def skill_handler(update, context):
     username = update.message.from_user.first_name
@@ -110,6 +161,7 @@ def main():
     dp.add_handler(CommandHandler(["d","defend"], defend_handler))
     dp.add_handler(CommandHandler(["r","roll"], roll_handler))
     dp.add_handler(CommandHandler(["s","skill"], skill_handler))
+    dp.add_handler(CommandHandler(["p","probability"], probability_handler))
     dp.add_handler(CommandHandler(["sm","multiskill"], multiskill_handler))
     dp.add_handler(CommandHandler(["o","oops"], oops_handler))
     dp.add_handler(CommandHandler(["w","winds"], winds_handler))
