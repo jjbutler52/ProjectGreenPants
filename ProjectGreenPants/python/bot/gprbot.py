@@ -80,22 +80,28 @@ def roll_handler(update, context):
         return
 
     if argc == 2 and context.args[0].isdigit() and context.args[1].isdigit():
-        response = f"[roll @{username}]: "
+        response = f"[ROLL @{username}]: "
         rolls = int(context.args[0])
         skill = int(context.args[1])
         S = 0
         F = 0
+        response += '[' + str(rolls) + 'd10 vs ' + str (skill) + '] \n    '
         for r in range (rolls):
             rnd = random.randint (1, 10)
             if rnd <= skill:
                 S += 1
             else:
                 F += 1
-            if (rnd == 10):
-                rnd = 0
-            response += str (rnd) + '  '
-        response += '  [S:' + str (S) + ' '
-        response += '  F:' + str (F) + ']'
+            response += str (rnd)
+            response += '  '
+        response += '   ['
+        if (S > 0):
+            response += 'S:' + str (S)
+        if (F > 0):
+            if (S > 0):
+                response += '  '
+            response += 'F:' + str (F)
+        response += ']'
         context.bot.send_message(chat_id=update.effective_chat.id, text=response)
         return
     response = f"[roll @{username}] usage: /r or /r <# of d10s> or /r <characteristic> <skill>"
