@@ -6,6 +6,14 @@ def attack (skill, username):
 def defend (skill, username):
     return combatRoll(skill, username, False, random.randint(1,100))
 
+def probability (characteristic, skill):
+    # 1 - (1 - P)^N
+    P = skill / 10.0
+    N = characteristic
+    d = 1 - pow (1 - P, N)
+    p = (d * 100)
+    return f'{p:10.1f}' + '%'
+
 def skill (skill, username):
     return skillRoll(skill, username, random.randint(1,100))
 
@@ -14,7 +22,6 @@ def multiskill (skill, username, count):
     for r in range (count):
         rolls.append (random.randint(1,100))
     return multiskillRoll(skill, username, rolls)
-
 
 def oops (username):
     return oopsRoll(username, random.randint(1,100))
