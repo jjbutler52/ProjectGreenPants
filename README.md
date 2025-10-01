@@ -57,7 +57,7 @@ all users:
 one user:
 
 	1. install telegram: https://desktop.telegram.org/ 
-	(this also works on all mobile devices, pcs, tables that support telegram)
+	(this also works on all mobile devices, pcs, tablets that support telegram)
 
 	2. create a private bot and a token by going here (takes 2 minutes or less):
 	https://core.telegram.org/bots#6-botfather/
@@ -77,7 +77,9 @@ one user:
 	
 	4. install python-telegram-bot package
 	Open windows command prompt (type "CMD" into windows taskbar search)
-	From command prompt type "pip install python-telegram-bot"
+	From command prompt type "pip install --force-reinstall -v "python-telegram-bot==13.3"
+also run these:
+pip install urllib3==1.26.11  (on one line) and pip install standard-imghdr (on a second line)  (i.e. install both of these)
 
 	5. Create an environment variable
 	From command prompt type "setx GPR_BOT_TOKEN <YOUR TOKEN HERE>"
